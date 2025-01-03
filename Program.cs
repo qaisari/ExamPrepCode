@@ -58,6 +58,7 @@ namespace PrepExam4
             GameStore store = new GameStore(path);
             ShowData(store.games);
             PS45Games(store.games);
+            GroupRatings(store.games);
         }
 
         static void ShowData(Game[] games)
@@ -79,6 +80,23 @@ namespace PrepExam4
                     Console.WriteLine(game);
                 }
             }
+        }
+        static void GroupRatings(Game[] games)
+        {
+            Console.WriteLine("\n5th task:");
+            Console.WriteLine("Ratings:");
+            int Excellent = 0, Good = 0, Playable = 0, Bad = 0;
+            foreach (Game game in games)
+            {
+                if (game.OpenCritic >= 90) { Excellent++; }
+                else if (game.OpenCritic >= 81 && game.OpenCritic <= 90) { Good++; }
+                else if (game.OpenCritic >= 71 && game.OpenCritic <= 80) { Playable++; }
+                else { Bad++; }
+            }
+            Console.WriteLine($"Excellent (91-100): {Excellent}");
+            Console.WriteLine($"Good (81-90): {Good}");
+            Console.WriteLine($"Playable (71-80): {Playable}");
+            Console.WriteLine($"Bad (0-70): {Bad}");
         }
     }
 }
