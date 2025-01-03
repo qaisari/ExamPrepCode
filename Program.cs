@@ -57,6 +57,7 @@ namespace PrepExam4
             string path = "ps_extra_games_input.csv";
             GameStore store = new GameStore(path);
             ShowData(store.games);
+            PS45Games(store.games);
         }
 
         static void ShowData(Game[] games)
@@ -66,6 +67,17 @@ namespace PrepExam4
             for(int i = 0; i < 10; i++)
             {
                 Console.WriteLine(games[i]);
+            }
+        }
+        static void PS45Games(Game[] games)
+        {
+            Console.WriteLine("\n4th task:");
+            foreach (Game game in games)
+            {
+                if (game.Platform == "PS4/PS5" && game.OpenCritic >= 90)
+                {
+                    Console.WriteLine(game);
+                }
             }
         }
     }
