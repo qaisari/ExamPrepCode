@@ -23,7 +23,6 @@ namespace PrepExam4
                 Genre = parts[4];
                 Multiplayer = parts[5];
                 Source = parts[6];
-                //Console.WriteLine(line);
             }
             catch (Exception ex)
             {
@@ -32,7 +31,7 @@ namespace PrepExam4
         }
         public override string ToString()
         {
-            return $"{Platform} {Played} {Name} {OpenCritic} {Genre} {Multiplayer} {Source}";
+            return string.Format($"{Platform,-15} {Played,-15} {OpenCritic,-15} {Multiplayer,-15} {Name}");
         }
     }
 
@@ -41,6 +40,7 @@ namespace PrepExam4
         public Game[] games { get; private set; }
         public GameStore(string path)
         {
+            Console.WriteLine("2nd task:\nReading file...");
             string[] lines = File.ReadAllLines(path);
             games = new Game[lines.Length - 1];
             int index = 0;
@@ -48,7 +48,6 @@ namespace PrepExam4
             {
                 if (line != lines[0]) { games[index++] = new Game(line); }
             }
-
         }
     }
     class Program
@@ -57,9 +56,16 @@ namespace PrepExam4
         {
             string path = "ps_extra_games_input.csv";
             GameStore store = new GameStore(path);
-            foreach (Game game in store.games)
+            ShowData(store.games);
+        }
+
+        static void ShowData(Game[] games)
+        {
+            Console.WriteLine("3rd task:");
+            Console.WriteLine($"{"Platform",-15}{"Played",-15}{"OpenCritic",-15}{"Multiplayer",-15}{"Name"}");
+            for(int i = 0; i < 10; i++)
             {
-                Console.WriteLine(game.ToString());
+                Console.WriteLine(games[i]);
             }
         }
     }
