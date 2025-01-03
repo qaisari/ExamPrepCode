@@ -63,9 +63,9 @@ namespace PrepExam4
             }
         }
     }
-    internal class Program
+    class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
             string path = "ps_extra_games_input.csv";
             GameStore store = new GameStore(path);
