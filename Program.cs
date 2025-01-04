@@ -52,7 +52,7 @@ namespace PrepExam4
     }
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             string path = "ps_extra_games_input.csv";
             GameStore store = new GameStore(path);
@@ -62,10 +62,12 @@ namespace PrepExam4
             GroupRatings(store.games);
             Search(store.games);
             Game bestgame = BestGame(store.games);
-            if(bestgame != null)
+            if (bestgame != null)
             {
                 Console.WriteLine($"Top rated game: {bestgame.Name} ({bestgame.OpenCritic})");
             }
+            var multiplayer = Multiplayer(store.games);
+            Console.WriteLine($"Online: {multiplayer.Online}\nLocal: {multiplayer.Local}\nBoth: {multiplayer.Both}");
         }
 
         static void ShowData(Game[] games)
@@ -131,6 +133,19 @@ namespace PrepExam4
                 if (bestGameRating < game.OpenCritic) { bestGameRating = game.OpenCritic; bestGame = game; }
             }
             return bestGame;
+        }
+        static (int Online,int Local,int Both) Multiplayer(Game[] games)
+        {
+            Console.WriteLine("\n8th task:");
+            Console.WriteLine("Multiplayer options:");
+            int Online = 0;int Local = 0;int Both = 0;
+            foreach (Game game in games)
+            {
+                if (game.Multiplayer == "Online") { Online++; }
+                else if (game.Multiplayer == "Local") { Local++; }
+                else { Both++; }
+            }
+            return (Online, Local, Both);
         }
     }
 }
