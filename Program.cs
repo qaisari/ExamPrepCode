@@ -59,6 +59,7 @@ namespace PrepExam4
             ShowData(store.games);
             PS45Games(store.games);
             GroupRatings(store.games);
+            Search(store.games);
         }
 
         static void ShowData(Game[] games)
@@ -97,6 +98,22 @@ namespace PrepExam4
             Console.WriteLine($"Good (81-90): {Good}");
             Console.WriteLine($"Playable (71-80): {Playable}");
             Console.WriteLine($"Bad (0-70): {Bad}");
+        }
+        static void Search(Game[] games)
+        {
+            Console.WriteLine("\n6th task:");
+            Console.Write("Enter the name of the game you are looking for:");
+            string name = Console.ReadLine();
+            bool found = false;
+            foreach (Game game in games)
+            {
+                if (game.Name == name) { found = true; }
+            }
+            if (!found)
+            {
+                Console.WriteLine("No such game found.");
+            }
+            else { Console.WriteLine("The game you are looking for exists in the database"); }
         }
     }
 }
