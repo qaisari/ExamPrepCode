@@ -43,23 +43,11 @@ namespace PrepExam4
         {
             Console.WriteLine("2nd task:\nReading file...");
             string[] lines = File.ReadAllLines(path);
-            games = new Game[lines.Length];
+            games = new Game[lines.Length - 1];
             int index = 0;
             foreach (string line in lines)
             {
                 if (line != lines[0]) { games[index++] = new Game(line); }
-            }
-        }
-        public void TaskTest()
-        {
-            Console.WriteLine("2nd task:");
-            Console.WriteLine("reading file...");
-            foreach (Game game in games)
-            {
-                if (game != null)
-                {
-                    Console.WriteLine(game);
-                }
             }
         }
     }
@@ -69,7 +57,6 @@ namespace PrepExam4
         {
             string path = "ps_extra_games_input.csv";
             GameStore store = new GameStore(path);
-            store.TaskTest();
             //task 3
             ShowData(store.games);
             //task 4
