@@ -56,10 +56,16 @@ namespace PrepExam4
         {
             string path = "ps_extra_games_input.csv";
             GameStore store = new GameStore(path);
+            Program program = new Program();
             ShowData(store.games);
             PS45Games(store.games);
             GroupRatings(store.games);
             Search(store.games);
+            Game bestgame = BestGame(store.games);
+            if(bestgame != null)
+            {
+                Console.WriteLine($"Top rated game: {bestgame.Name} ({bestgame.OpenCritic})");
+            }
         }
 
         static void ShowData(Game[] games)
@@ -114,6 +120,17 @@ namespace PrepExam4
                 Console.WriteLine("No such game found.");
             }
             else { Console.WriteLine("The game you are looking for exists in the database"); }
+        }
+        static Game BestGame(Game[] games)
+        {
+            int bestGameRating = 0;
+            Game bestGame = null;
+            Console.WriteLine("\n7th task");
+            foreach (Game game in games)
+            {
+                if (bestGameRating < game.OpenCritic) { bestGameRating = game.OpenCritic; bestGame = game; }
+            }
+            return bestGame;
         }
     }
 }
