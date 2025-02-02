@@ -165,5 +165,6 @@ namespace PrepExam4
             }
             return (Online, Local, Both);
         }
+        //it was nice to work on this
     }
 }
