@@ -3,7 +3,6 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace PrepExam4
 {
-    //In this task i got a better understanding of how to use the classes in C#
     public class Game
     {
         public string Platform { get; set; }
